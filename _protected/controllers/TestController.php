@@ -26,8 +26,8 @@ class TestController extends Controller
             Yii::$app->db
                 ->createCommand()
                 ->insert('data4table', [
-                    'title' => 'Новоя Книга',
-                    'text' => 'Простой текст',
+                    'title' => 'New Book',
+                    'text' => 'My Text from Book',
                 ])->execute();
             return $this->render('test', ['model' => 'Таблица создана и заполнена',]);
         } else { // если она уже создана
