@@ -16,19 +16,18 @@ class TestController extends Controller
     {
         // Проверим - можно ли получить информацию о таблице, если нет - создадим таблицу.
         if (Yii::$app->db->schema->getTableSchema('data4table', true) === null) {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'; // параметры таблицы
             // Создание таблицы с помощью DAO:
             Yii::$app->db->createCommand()->createTable('data4table', [
                 'id' => 'pk',
                 'title' => 'string',
                 'text' => 'text',
-            ], $tableOptions)->execute();
+            ])->execute();
             // Заполним значениями с помощью DAO:
             Yii::$app->db
                 ->createCommand()
                 ->insert('data4table', [
-                    'title' => 'Новоя Книга',
-                    'text' => 'Простой текст',
+                    'title' => 'New Book',
+                    'text' => 'My Text from Book',
                 ])->execute();
             return $this->render('test', ['model' => 'Таблица создана и заполнена',]);
         } else { // если она уже создана
